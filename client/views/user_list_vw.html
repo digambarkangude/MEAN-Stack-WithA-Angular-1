@@ -1,0 +1,31 @@
+<h2>Users List</h2>
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>DOB</th>
+            <th>Picture</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in Users | limitTo: pageSize">
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.dob}}</td>
+            <td><img ng-src="../uploads/{{user.picture}}" width="50" height="auto"></td>
+            <td><a href="" ng-click="edit(user._id)"> Edit </a> || <a href="" ng-click="delete(user._id)"> Delete </a> </td>
+        </tr>
+        <tr>
+        <td colspan="7">
+                <ul uib-pagination total-items="Users.length" items-per-page="pageSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
+            </td>
+        </tr>
+
+    </tbody>

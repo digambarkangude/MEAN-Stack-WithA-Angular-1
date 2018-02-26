@@ -1,0 +1,67 @@
+
+<h2>Add New User</h2>
+<form class="form-horizontal" name="frm" novalidate enctype="multipart/form-data">
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="email">Name:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="email" required ng-model="User.name" name="name" placeholder="Enter name" required ng-model="User.name">
+			<span ng-show="frm.name.$error.required && frm.name.$dirty" style="color: red;">Please enter name</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="email">Email:</label>
+		<div class="col-sm-10">
+			<input type="email" class="form-control" id="email" required ng-model="User.email" name="email" placeholder="Enter email">
+			<span ng-show="frm.email.$error && frm.email.$dirty" style="color: red;">
+				<span ng-show="frm.email.$error.required">Please enter email</span>
+				<span ng-show="frm.email.$error.email">Please enter valid email</span>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="email">Address:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="email" required ng-model="User.address" name="address" placeholder="Enter address">
+			<span ng-show="frm.address.$error.required && frm.address.$dirty" style="color: red;">Please enter address</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="email">Phone:</label>
+		<div class="col-sm-10">
+			<input type="number" class="form-control" id="email" required ng-model="User.phone" name="phone" placeholder="Enter phone">
+			<span ng-show="frm.phone.$error.required && frm.phone.$dirty" style="color: red;"> Please enter phone</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="email">DOB:</label>
+		<div class="col-sm-10 input-group date" id="datepicker" data-date-format="mm-dd-yyyy">
+			<input type="text" class="form-control" id="email" required ng-model="User.dob" name="dob" placeholder="Enter dob">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+			<span ng-show="frm.dob.$error.required && frm.dob.$dirty" style="color: red;"> Please enter dob</span>
+			
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="pwd">Picture:</label>
+		<div class="col-sm-10">
+			<input type="file" ngf-select ng-model="picture" name="file"    
+			accept="image/*" ngf-max-size="2MB" required
+			ngf-model-invalid="errorFile">
+			<i ng-show="myForm.file.$error.required">*required</i><br>
+			<i ng-show="myForm.file.$error.maxSize">File too large 
+				{{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+				<img ng-show="myForm.file.$valid" ngf-thumbnail="picture" class="thumb" width="100" height="auto"> <button ng-click="picture = null" ng-show="picture">Remove</button>
+			</div>
+		</div>
+		<div class="form-group"> 
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default" ng-disabled="frm.$invalid" ng-click="submit(picture);">Submit</button>
+			</div>
+			<span class="progress" ng-show="picture.progress >= 0">
+				<div style="width:{{picture.progress}}%" 
+				ng-bind="picture.progress + '%'"></div>
+			</span>
+			<span ng-show="picture.result">Upload Successful</span>
+			<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+		</div>
+	</form>
